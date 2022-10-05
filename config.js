@@ -14,6 +14,7 @@ module.exports = config = {
     password: 'LgbtPlus2022'
   },
   server: {
-    url: 'https://lgbt-plus-server.herokuapp.com'
+    url: 'https://lgbt-plus-server.herokuapp.com',
+    port: 8080,
   }
 }

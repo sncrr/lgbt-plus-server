@@ -1,4 +1,4 @@
-const Controller = require("./Controller");
+const Controller = require("./controller");
 const SpecialtyController = require("./specialist_service.controller");
 
 module.exports = class SpecialistController extends Controller {

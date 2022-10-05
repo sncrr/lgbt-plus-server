@@ -5,7 +5,8 @@
  *
  */
 
-const db = require("../connection");
+const conn = require("../connection");
+const util = require('util');
 
 class QueryBuilder {
   constructor(methodName) {
@@ -30,7 +31,14 @@ class QueryBuilder {
     this._loadMethod(methodName);
   }
   async raw(query) {
-    var result = await db(query);
+    conn.connect(err => {
+      if(err) console.warn("ERROR",err);
+      else console.log("Database Connected");
+    })
+
+    const db = util.promisify(conn.query).bind(conn);
+    const result = await db(query);
+
     return result;
   }
   select(clause) {
@@ -86,13 +94,27 @@ class QueryBuilder {
   async call() {
 
     var query = this.processor.query(this);
-    var result = await db(query);
+
+    conn.connect(err => {
+      if(err) console.warn("ERROR",err);
+      else console.log("Database Connected");
+    })
+
+    const db = util.promisify(conn.query).bind(conn);
+    const result = await db(query);
+
     return result;
   }
   async first() {
 
     var query = this.processor.query(this);
-    var result = await db(query);
+    conn.connect(err => {
+      if(err) console.warn("ERROR",err);
+      else console.log("Database Connected");
+    })
+
+    const db = util.promisify(conn.query).bind(conn);
+    const result = await db(query);
 
     if (result && result.length > 0) {
       return result[0];

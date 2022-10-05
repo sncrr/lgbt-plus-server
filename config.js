@@ -4,7 +4,7 @@ module.exports = config = {
   //   port: 3306,
   //   database: 'lgbt_plus_master',
   //   user: 'root',
-  //   password: '',
+  //   password: 'root',
   // },
   db: {
     host: '194.163.35.34',

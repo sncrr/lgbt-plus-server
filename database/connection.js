@@ -17,7 +17,13 @@ const config = require('../config');
 /**
  * Create Connection
  */
-const conn = mysql.createConnection(config.db);
+const conn = mysql.createConnection({
+    host: process.env.DBHOST || config.db.host,
+    port: process.env.DBPORT || config.db.port,
+    database: process.env.DBNAME || config.db.database,
+    user: process.env.DBUSER || config.db.user,
+    password: process.env.DBPASSWORD || config.db.password
+});
 
 conn.connect(err => {
     if(err) console.warn("ERROR",err);

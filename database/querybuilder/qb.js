@@ -31,13 +31,18 @@ class QueryBuilder {
     this._loadMethod(methodName);
   }
   async raw(query) {
-    conn.connect(err => {
-      if(err) console.warn("ERROR",err);
-      else console.log("Database Connected");
-    })
+    // conn.connect(err => {
+    //   if(err) console.warn("ERROR",err);
+    //   else console.log("Database Connected");
+    // })
 
-    const db = util.promisify(conn.query).bind(conn);
-    const result = await db(query);
+    // const db = util.promisify(conn.query).bind(conn);
+    // const result = await db(query);
+
+    let result = null;
+    await conn.query(query).then((res) => {
+      result = res[0];
+    });
 
     return result;
   }
@@ -95,26 +100,34 @@ class QueryBuilder {
 
     var query = this.processor.query(this);
 
-    conn.connect(err => {
-      if(err) console.warn("ERROR",err);
-      else console.log("Database Connected");
-    })
+    // conn.connect(err => {
+    //   if(err) console.warn("ERROR",err);
+    //   else console.log("Database Connected");
+    // })
 
-    const db = util.promisify(conn.query).bind(conn);
-    const result = await db(query);
+    //const db = util.promisify(conn.query).bind(conn);
+    let result = null;
+    await conn.query(query).then((res) => {
+      result = res[0];
+    });
 
     return result;
   }
   async first() {
 
     var query = this.processor.query(this);
-    conn.connect(err => {
-      if(err) console.warn("ERROR",err);
-      else console.log("Database Connected");
-    })
+    // conn.connect(err => {
+    //   if(err) console.warn("ERROR",err);
+    //   else console.log("Database Connected");
+    // })
 
-    const db = util.promisify(conn.query).bind(conn);
-    const result = await db(query);
+    // const db = util.promisify(conn.query).bind(conn);
+    // const result = await db(query);
+
+    let result = null;
+    await conn.query(query).then((res) => {
+      result = res[0];
+    });
 
     if (result && result.length > 0) {
       return result[0];

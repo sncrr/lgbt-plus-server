@@ -6,12 +6,14 @@ const AdminController = require('../controller/admin.controller');
 const SpecialistController = require('../controller/specialist.controller');
 const ServiceController = require("../controller/service.controller");
 const ClientController = require("../controller/client.controller");
+const BarangayController = require("../controller/barangay.controller");
 
 //Initialization
 const admin = new AdminController();
 const specialist = new SpecialistController();
 const client = new ClientController();
 const service = new ServiceController();
+const barangay = new BarangayController();
 
 module.exports = initApi = (app) => {
 
@@ -38,6 +40,12 @@ module.exports = initApi = (app) => {
   router.post("/client", client.save);
   router.post("/client/:id", client.save);
   router.delete("/client/:id", client.deleteById);
+
+  router.get("/barangay/all", barangay.getList);
+  router.get("/barangay/:id", barangay.getById);
+  router.post("/barangay", barangay.save);
+  router.post("/barangay/:id", barangay.save);
+  router.delete("/barangay/:id", barangay.deleteById);
 
   router.get("/service/all", service.getList);
   router.get("/service/:id", service.getById);

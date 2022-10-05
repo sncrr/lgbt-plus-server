@@ -30,7 +30,8 @@ const initApi = require('./routes/api');
  * Listen to Any Request
  */
 app.listen(config.server.port, () => {
-  console.log(`Server is running on port ${config.server.url}:${config.server.port}...`);
+  //console.log(`Server is running on port ${config.server.url}:${config.server.port}...`);
+  console.log(`Server is running on port...`);
 });
 
 app.get("/", (req, res) => {

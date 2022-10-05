@@ -17,11 +17,6 @@ app.use(express.urlencoded({
 app.options('*', cors());
 
 /**
- * Server Configs
- */
-const config = require('./config');
-
-/**
  * Initialize API
  */
 const initApi = require('./routes/api');
@@ -29,7 +24,7 @@ const initApi = require('./routes/api');
 /**
  * Listen to Any Request
  */
-app.listen(config.server.port, () => {
+app.listen(process.env.PORT || 5000, () => {
   //console.log(`Server is running on port ${config.server.url}:${config.server.port}...`);
   console.log(`Server is running on port...`);
 });

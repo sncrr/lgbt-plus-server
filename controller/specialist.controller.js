@@ -140,8 +140,33 @@ module.exports = class SpecialistController extends Controller {
       }
     }
     else {
+      await this.specialtyController.deleteBySpecialistId(specialistId);
       return await this._deleteById(specialistId);
     }
   }
+
+  /**
+   * Get Specialist on Selected Service
+   */
+  getSpecialistByService = async (req) => {
+    let serviceId = req.params.id;
+    if(serviceId === ":id") {
+      return {
+        error: "Missing route parameter service `id`"
+      }
+    }
+    else {
+      let res = await this.qb.raw(`
+        SELECT specialists.* FROM specialists
+        INNER JOIN specialist_services
+        ON specialist_services.specialist = specialists.id
+        WHERE specialist_services.service = ${serviceId};
+      `)
+
+      return res;
+    }
+  }
+
+  
   
 }

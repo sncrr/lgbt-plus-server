@@ -40,8 +40,8 @@ var ToMysql = {
       + this._parseRightJoin()
       + this._parseLeftJoin()
       + this._parseWhere()
-      + this._parseOrder()
       + this._parseGroup()
+      + this._parseOrder()
       + this._parseLimit();
   },
 

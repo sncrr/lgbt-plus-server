@@ -71,7 +71,9 @@ module.exports = class BarangayController extends Controller {
       }
     }
     else {
-      return await this._deleteById(barangayId);
+      return await this._updateById(barangayId, {
+        status: 0
+      })
     }
   }
 }

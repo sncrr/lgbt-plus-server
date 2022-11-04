@@ -1,6 +1,9 @@
 /**
  * NodeJS Modules
  */
+const http = require("http");
+const path = require("path");
+const fs = require("fs");
 const express = require('express');
 // const cors = require('cors');
 
@@ -8,6 +11,8 @@ const express = require('express');
  * Express Settigns
  */
 const app = express();
+const httpServer = http.createServer(app);
+
 // app.use(cors());
 app.use(express.json());
 app.use(express.static('build'));
@@ -31,10 +36,13 @@ const initApi = require('./routes/api');
 /**
  * Listen to Any Request
  */
-app.listen(process.env.PORT || 8080, () => {
-  //console.log(`Server is running on port ${config.server.url}:${config.server.port}...`);
-  console.log(`Server is running on port...`);
+httpServer.listen(process.env.PORT || 8080, () => {
+  console.log(`Server is listening on port ${process.env.PORT || 8080}`);
 });
+// app.listen(process.env.PORT || 8080, () => {
+//   //console.log(`Server is running on port ${config.server.url}:${config.server.port}...`);
+//   console.log(`Server is running on port...`);
+// });
 
 app.get("/", (req, res) => {
   res.send("Hello World");
